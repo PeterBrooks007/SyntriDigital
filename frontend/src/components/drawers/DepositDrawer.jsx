@@ -882,7 +882,7 @@ const DepositDrawer = ({
                         name="amount"
                         value={amount}
                         onChange={handleInputChange}
-                        placeholder="$0.00"
+                        placeholder="0.00"
                         sx={{
                           textAlign: "center",
                           fontWeight: "bold", // Bold text for input
