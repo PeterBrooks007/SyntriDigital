@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import "./GetStartedSlider.css";
 import { Box, Button, Stack, Typography, useTheme, Link } from "@mui/material";
 import { tokens } from "../../theme";
-import slider1Image from "../../assets/mockup_images/3126834-cover.png";
+import slider1Image from "../../assets/mockup_images/iPhone_Mockup_doubleWhite.png";
 import slider2Image from "../../assets/mockup_images/device-mobile-branch-wallet.png";
 import slider3Image from "../../assets/mockup_images/customer-2.png";
 

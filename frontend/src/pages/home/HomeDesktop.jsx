@@ -42,7 +42,7 @@ const Homedesktop = () => {
   };
 
   return (
-    <Box
+     <Box
       // display={"flex"}
       // flexDirection={"column"}
       height={"calc(100vh - 80px)"}
@@ -53,7 +53,7 @@ const Homedesktop = () => {
         backgroundSize: "cover", // Ensures the image covers the entire Box
         backgroundPosition: {
           xs: "75% ", // 100px from the left and vertically centered on small screens
-          md: "top center", // Fully centered for medium screens and larger
+          md: "center", // Fully centered for medium screens and larger
         },
         backgroundRepeat: "no-repeat", // Prevents the image from repeating
       }}

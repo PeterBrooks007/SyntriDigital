@@ -21,7 +21,7 @@ const sendEmail = async (subject, send_to, template, reply_to, cc) => {
       name: "syntridigital Platform",
       link: "https://syntridigital.com/",
       // Optional product logo
-      logo: 'https://res.cloudinary.com/dikwlne6g/image/upload/v1760749070/logo_ct4na9.png',
+      logo: 'https://res.cloudinary.com/dikwlne6g/image/upload/v1761864666/logo_cq4kna.png',
        // Custom logo height
       logoHeight: '70px'
     },
