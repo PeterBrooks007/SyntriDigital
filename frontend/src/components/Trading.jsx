@@ -295,7 +295,7 @@ const Trading = ({ handleClose, drawer }) => {
               p={"4px 12px"}
               color={"white"}
             >
-              <Typography fontWeight={"500"}>Sell</Typography>
+              <Typography fontWeight={"500"}>Long</Typography>
               <Typography fontWeight={"500"}>{selectedSymbol || "None"}</Typography>
             </Box>
             <Box
@@ -308,7 +308,7 @@ const Trading = ({ handleClose, drawer }) => {
               color={"white"}
             >
               <Stack alignItems={"end"}>
-                <Typography fontWeight={"500"}>Buy</Typography>
+                <Typography fontWeight={"500"}>Short</Typography>
                 <Typography fontWeight={"500"}>{selectedSymbol || "None"}</Typography>
               </Stack>
             </Box>

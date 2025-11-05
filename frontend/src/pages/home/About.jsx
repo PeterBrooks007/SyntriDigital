@@ -17,10 +17,10 @@ import iPhone_Mockup_doubleWhite from "../../assets/mockup_images/iPhone_Mockup_
 import sectn1Img from "../../assets/sectn1Img.png";
 import iPhone_Mockup_singleWhite from "../../assets/mockup_images/iPhone_Mockup_singleWhite.png";
 import iPhone_Mockup_singleDark from "../../assets/mockup_images/iPhone_Mockup_singleDark.png";
-import image21 from "../../assets/mockup_images/3126834-cover.png";
+import image21 from "../../assets/bitcoin-binance.jpg";
 import device_mobile_branch_wallet from "../../assets/mockup_images/device-mobile-branch-wallet.png";
 import TestimonialSection from "../../components/TestimonialSection ";
-import certificate from "../../assets/certificate.jpg"
+import certificate from "../../assets/device-mobile-branch-uk.png"
 import PackagePlans from "../../components/PackagePlans";
 
 const About = () => {
@@ -254,7 +254,7 @@ const About = () => {
             flexDirection={{ xs: "column", md: "row" }}
           >
             <Box flex={"50%"} display={"flex"} justifyContent={"center"}  order={{ xs: 1, md: 0 }}>
-              <img src={image21} alt="" width={"90%"} />
+              <img src={image21} alt="" width={"100%"} />
             </Box>
             <Box sx={{ flex: "50%" }} order={{ xs: 0, md: 1 }}>
               <Typography variant="h4" sx={{ mb: 1 }}>

@@ -210,7 +210,7 @@ export default function StickyHeadTable({ allTradeFiltered }) {
                         <span
                           style={{
                             backgroundColor:
-                            trade?.buyOrSell === "Buy"
+                            trade?.buyOrSell === "Long"
                             ? theme.palette.mode === "light"
                               ? "#009e4a"
                               : "rgba(0, 255, 127, 0.8)"
@@ -229,7 +229,7 @@ export default function StickyHeadTable({ allTradeFiltered }) {
                         <span
                           style={{
                             color:
-                              trade?.buyOrSell === "Buy"
+                              trade?.buyOrSell === "Long"
                                 ? theme.palette.mode === "light"
                                   ? "#009e4a"
                                   : "rgba(0, 255, 127, 0.8)"

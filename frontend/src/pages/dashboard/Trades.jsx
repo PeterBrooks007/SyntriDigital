@@ -256,7 +256,7 @@ const Trades = () => {
                       }}
                     />
                   ) : (
-                    "Buy"
+                    "Long"
                   )}
                 </Button>
                 <Button
@@ -286,7 +286,7 @@ const Trades = () => {
                       }}
                     />
                   ) : (
-                    "Sell"
+                    "Short"
                   )}
                 </Button>
               </Stack>
@@ -543,7 +543,7 @@ const Trades = () => {
                       }}
                     />
                   ) : (
-                    "Buy"
+                    "Long"
                   )}
                 </Button>
                 <Button
@@ -572,7 +572,7 @@ const Trades = () => {
                       }}
                     />
                   ) : (
-                    "Sell"
+                    "Short"
                   )}
                 </Button>
               </Stack>
@@ -889,7 +889,7 @@ const Trades = () => {
                                 scope="row"
                                 sx={{
                                   color:
-                                    trade?.buyOrSell === "Buy"
+                                    trade?.buyOrSell === "Long"
                                       ? theme.palette.mode === "light"
                                         ? "#009e4a"
                                         : "rgba(0, 255, 127, 0.8)"
@@ -943,13 +943,13 @@ const Trades = () => {
       )}
 
       {/* {openTradeHistoryDrawer && ( */}
-        <TradeHistoryDrawer
-          open={openTradeHistoryDrawer}
-          handleClose={handleCloseTradeHistoryDrawer}
-          handleOpen={handleOpenTradeHistoryDrawer}
-          tradeHistoryDrawerLoader={tradeHistoryDrawerLoader}
-          setTradeHistoryDrawerLoader={setTradeHistoryDrawerLoader}
-        />
+      <TradeHistoryDrawer
+        open={openTradeHistoryDrawer}
+        handleClose={handleCloseTradeHistoryDrawer}
+        handleOpen={handleOpenTradeHistoryDrawer}
+        tradeHistoryDrawerLoader={tradeHistoryDrawerLoader}
+        setTradeHistoryDrawerLoader={setTradeHistoryDrawerLoader}
+      />
       {/* )} */}
 
       <AllNotificationsDrawer

@@ -102,6 +102,10 @@ const LimitStopTrade = ({
     units: "",
     risk: "0",
     riskPercentage: "0",
+    leverage: "",
+    takeProfit: "",
+    stopLoss: "",
+
     expireTime:
       user?.autoTradeSettings?.isAutoTradeActivated === true
         ? ""
@@ -412,7 +416,7 @@ const LimitStopTrade = ({
                   </Stack>
                 </Stack>
 
-                <Box
+                {/* <Box
                   mx={"-15px"}
                   mt={2}
                   borderBottom={
@@ -421,9 +425,9 @@ const LimitStopTrade = ({
                       : "2px solid rgba(47,49,58,1)"
                   }
                   display={isQuickTrade && "none"}
-                ></Box>
+                ></Box> */}
 
-                <Stack
+                {/* <Stack
                   mt={0.5}
                   direction={"row"}
                   justifyContent={"space-between"}
@@ -454,9 +458,9 @@ const LimitStopTrade = ({
                     />
                     <Typography variant="subtitle2">Stop Loss</Typography>
                   </Stack>
-                </Stack>
+                </Stack> */}
 
-                <Stack
+                {/* <Stack
                   direction={"row"}
                   spacing={2}
                   display={isQuickTrade && "none"}
@@ -694,6 +698,81 @@ const LimitStopTrade = ({
                       }}
                     />
                   </Box>
+                </Stack> */}
+
+                <Stack spacing={0.5} width={"100%"} mt={1}>
+                  <InputLabel htmlFor="my-input">Leverage</InputLabel>
+                  <OutlinedInput
+                    name="leverage"
+                    value={values?.leverage}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    size="small"
+                    placeholder="Enter Leverage "
+                    sx={{
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderRadius:
+                          type !== "LMT" && type !== "STP"
+                            ? "10px"
+                            : "10px 0px 0px 10px",
+                      },
+                    }}
+                  />
+                  {touched.price && errors.price && (
+                    <FormHelperText error sx={{ ml: 2 }}>
+                      {errors.price}
+                    </FormHelperText>
+                  )}
+                </Stack>
+
+                <Stack spacing={0.5} width={"100%"} mt={1}>
+                  <InputLabel htmlFor="my-input">Take Profit</InputLabel>
+                  <OutlinedInput
+                    name="takeProfit"
+                    value={values?.takeProfit}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    size="small"
+                    placeholder="Enter Take Profit "
+                    sx={{
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderRadius:
+                          type !== "LMT" && type !== "STP"
+                            ? "10px"
+                            : "10px 0px 0px 10px",
+                      },
+                    }}
+                  />
+                  {touched.price && errors.price && (
+                    <FormHelperText error sx={{ ml: 2 }}>
+                      {errors.price}
+                    </FormHelperText>
+                  )}
+                </Stack>
+
+                <Stack spacing={0.5} width={"100%"} mt={1}>
+                  <InputLabel htmlFor="my-input">Stop Loss</InputLabel>
+                  <OutlinedInput
+                    name="stopLoss"
+                    value={values?.stopLoss}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    size="small"
+                    placeholder="Enter Stop Loss "
+                    sx={{
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderRadius:
+                          type !== "LMT" && type !== "STP"
+                            ? "10px"
+                            : "10px 0px 0px 10px",
+                      },
+                    }}
+                  />
+                  {touched.price && errors.price && (
+                    <FormHelperText error sx={{ ml: 2 }}>
+                      {errors.price}
+                    </FormHelperText>
+                  )}
                 </Stack>
 
                 {user?.role === "admin" ? (
@@ -780,9 +859,13 @@ const LimitStopTrade = ({
                   {user?.role === "admin" ? (
                     <Typography
                       variant="subtitle2"
-                      sx={{ pl: 0.5, color: theme.palette.mode === "light"
-                        ? "#009e4a"
-                        : "rgba(0, 255, 127, 0.8)" }}
+                      sx={{
+                        pl: 0.5,
+                        color:
+                          theme.palette.mode === "light"
+                            ? "#009e4a"
+                            : "rgba(0, 255, 127, 0.8)",
+                      }}
                     >
                       Trade Balance:{" "}
                       {Intl.NumberFormat("en-US", {
@@ -802,9 +885,13 @@ const LimitStopTrade = ({
                   ) : (
                     <Typography
                       variant="subtitle2"
-                      sx={{ pl: 0.5, color: theme.palette.mode === "light"
-                        ? "#009e4a"
-                        : "rgba(0, 255, 127, 0.8)" }}
+                      sx={{
+                        pl: 0.5,
+                        color:
+                          theme.palette.mode === "light"
+                            ? "#009e4a"
+                            : "rgba(0, 255, 127, 0.8)",
+                      }}
                     >
                       {tradingMode === "Live"
                         ? "Trade Balance:"
@@ -972,9 +1059,9 @@ const LimitStopTrade = ({
                         backgroundColor: "darkgreen",
                       },
                     }}
-                    onClick={() => setBuyOrSell("Buy")}
+                    onClick={() => setBuyOrSell("Long")}
                   >
-                    Buy
+                    Long
                   </Button>
                   <Button
                     type="submit"
@@ -991,9 +1078,9 @@ const LimitStopTrade = ({
                         backgroundColor: "darkred",
                       },
                     }}
-                    onClick={() => setBuyOrSell("Sell")}
+                    onClick={() => setBuyOrSell("Short")}
                   >
-                    Sell
+                    Short
                   </Button>
                 </Stack>
               </form>

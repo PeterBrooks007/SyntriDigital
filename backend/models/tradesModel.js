@@ -12,7 +12,7 @@ const tradesSchema = new Schema(
       required: true,
     },
     exchangeTypeIcon: {
-      type: String, 
+      type: String,
       required: true,
     },
     symbols: {
@@ -22,7 +22,7 @@ const tradesSchema = new Schema(
       type: String, //Msrket, Limit, stoplose, Take profit
     },
     buyOrSell: {
-      type: String, 
+      type: String,
       required: true,
     },
     price: {
@@ -42,46 +42,55 @@ const tradesSchema = new Schema(
     riskPercentage: {
       type: String,
     },
+    leverage: {
+      type: String,
+    },
+    takeProfit: {
+      type: String,
+    },
+    stopLoss: {
+      type: String,
+    },
     amount: {
       type: Number,
     },
     profitOrLossAmount: {
-      type: Number, 
+      type: Number,
       required: true,
     },
     open: {
       type: String,
     },
     close: {
-      type: String, 
+      type: String,
     },
     longOrShortUnit: {
       type: String, //25X, 45X etc
     },
     roi: {
-      type: String, 
+      type: String,
     },
     status: {
-      type: String, 
+      type: String,
       required: true,
     },
     expireTime: {
-      type: Number, 
+      type: Number,
       required: true,
     },
     tradeFrom: {
-      type: String, // admin or user 
+      type: String, // admin or user
       required: true,
     },
     isProcessed: {
-      type: Boolean, 
+      type: Boolean,
       default: false,
     },
     createdAt: {
       type: Date,
       default: Date.now,
     },
-  },
+  }
   // { _id: false } // Prevents each message from having its own unique _id
 );
 
@@ -89,7 +98,7 @@ const tradingSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     trades: {

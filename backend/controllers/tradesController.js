@@ -15,6 +15,8 @@ const addTrade = asyncHandler(async (req, res) => {
 
   const { userId, tradeData } = req.body;
 
+  console.log(tradeData)
+
   const tradeDataNow = {
     ...tradeData,
   };

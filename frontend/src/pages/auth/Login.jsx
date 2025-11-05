@@ -4,6 +4,7 @@ import {
   CircularProgress,
   Container,
   Divider,
+  IconButton,
   InputAdornment,
   Link,
   Stack,
@@ -13,7 +14,13 @@ import {
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { EnvelopeSimple, GoogleLogo, Lock } from "@phosphor-icons/react";
+import {
+  EnvelopeSimple,
+  Eye,
+  EyeSlash,
+  GoogleLogo,
+  Lock,
+} from "@phosphor-icons/react";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,6 +51,12 @@ const Login = () => {
     setAnchorEl(null);
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const [email, setEmail] = useState("");
@@ -70,7 +83,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-
     if (isSuccess && isLoggedIn && is2FARequired) {
       navigate("/auth/2faAuthentication");
       return;
@@ -112,7 +124,7 @@ const Login = () => {
         height="90vh"
         justifyContent="space-between"
         position={"relative"}
-        sx={{overflowX: "hidden"}}
+        sx={{ overflowX: "hidden" }}
       >
         <Box
           position={"absolute"}
@@ -243,13 +255,25 @@ const Login = () => {
                       fullWidth
                       size="medium"
                       variant="outlined"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       // label="Password"
                       placeholder="Enter Password"
                       name="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       InputProps={{
+                        endAdornment: (
+                          <IconButton
+                            onClick={togglePasswordVisibility}
+                            edge="start"
+                          >
+                            {showPassword ? (
+                              <EyeSlash size={20} />
+                            ) : (
+                              <Eye size={20} />
+                            )}
+                          </IconButton>
+                        ),
                         startAdornment: (
                           <InputAdornment position="start">
                             <Lock

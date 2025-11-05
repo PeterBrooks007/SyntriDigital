@@ -12,6 +12,7 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
+  Modal,
   Stack,
   Typography,
   useTheme,
@@ -51,6 +52,10 @@ import {
   getUser,
   getUserBalanceAfterTrade,
 } from "../redux/features/auth/authSlice";
+
+import backgroundImage from "../assets/bg-9.png";
+import logo from "../assets/logo.png"; // <-- make sure this path is correct
+import UseWindowSize from "../hooks/UseWindowSize";
 
 export const CountdownTimer = ({ createdAt, expireTime, onExpire, trades }) => {
   const theme = useTheme();
@@ -158,6 +163,9 @@ export const CountdownTimer = ({ createdAt, expireTime, onExpire, trades }) => {
                 units: trades?.units || "",
                 risk: trades?.risk || "",
                 riskPercentage: trades?.riskPercentage ?? "",
+                leverage: trades?.leverage ?? "",
+                takeProfit: trades?.takeProfit ?? "",
+                stopLoss: trades?.stopLoss ?? "",
                 expireTime: "-30",
                 amount: trades?.amount ?? "",
                 open: "90000",
@@ -204,6 +212,9 @@ export const CountdownTimer = ({ createdAt, expireTime, onExpire, trades }) => {
                 units: trades?.units || "",
                 risk: trades?.risk || "",
                 riskPercentage: trades?.riskPercentage ?? "",
+                leverage: trades?.leverage ?? "",
+                takeProfit: trades?.takeProfit ?? "",
+                stopLoss: trades?.stopLoss ?? "",
                 expireTime: "-30",
                 amount: trades?.amount ?? "",
                 open: trades?.open,
@@ -274,6 +285,8 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
+
+  const size = UseWindowSize();
 
   const { id } = useParams();
 
@@ -396,6 +409,11 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       )
     : [];
+
+  // Trade image screenshot
+  const [open, setOpen] = React.useState(false);
+  const handleOpenScreenshort = () => setOpen(true);
+  const handleCloseScreenshort = () => setOpen(false);
 
   return (
     <>
@@ -614,7 +632,14 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
                         )}
                       </Menu>
 
-                      <IconButton size="small">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setSelectedTraderID(trades);
+                          handleOpenScreenshort();
+                        }}
+                        disabled={trades?.isProcessed === false}
+                      >
                         <Image size={22} />
                       </IconButton>
                     </Stack>
@@ -627,7 +652,7 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
                     <Typography
                       variant="subtitle2"
                       color={
-                        trades?.buyOrSell?.toLowerCase() === "buy"
+                        trades?.buyOrSell?.toLowerCase() === "long"
                           ? theme.palette.mode === "light"
                             ? "#009e4a"
                             : "rgba(0, 255, 127, 0.8)"
@@ -831,6 +856,106 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* <Button onClick={handleOpenScreenshort}>Open modal</Button> */}
+
+      <Modal open={open} onClose={handleCloseScreenshort}>
+        <Box
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: size.width < 680 ? "90%" : 450,
+            height: size.width < 680 ? 450 : 500,
+            bgcolor: "background.paper",
+            border: "1px solid gray",
+            boxShadow: 24,
+            overflow: "hidden",
+          }}
+        >
+          {/* Background */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              zIndex: 1, // sits behind content
+            }}
+          />
+
+          {/* Content */}
+          <Box sx={{ position: "relative", zIndex: 2, p: 2 }}>
+            <img src={logo} alt="logo" width={150} height={40} />
+
+            <Typography color={"white"} mt={8} fontSize={18}>
+              Unrealized PnL
+            </Typography>
+
+            <Box
+              display={"flex"}
+              justifyContent={"start"}
+              alignItems={"center"}
+              mt={1}
+            >
+              <Typography
+                color={"white"}
+                fontSize={18}
+                fontWeight={600}
+                sx={{ borderRight: "0.5px solid gray" }}
+                mr={1.5}
+                pr={1.5}
+              >
+                {selectedTraderID?.symbols}
+              </Typography>
+              <Typography
+                color={
+                  selectedTraderID?.buyOrSell === "Long" ? "springgreen" : "red"
+                }
+                fontSize={18}
+                fontWeight={600}
+                sx={{ borderRight: "1px solid darkgray" }}
+                mr={1.5}
+                pr={1.5}
+              >
+                {selectedTraderID?.buyOrSell}
+              </Typography>
+              <Typography color={"white"} fontSize={18} fontWeight={600}>
+                {selectedTraderID?.leverage}
+              </Typography>
+            </Box>
+
+            <Typography
+              color={"springgreen"}
+              mt={1}
+              fontSize={40}
+              fontWeight={600}
+            >
+              {selectedTraderID?.roi}
+            </Typography>
+
+            <Box display={"flex"} alignItems={"center"} mt={1} gap={1}>
+              <Typography color={"gray"} fontSize={14} fontWeight={500}>
+                Last Price
+              </Typography>
+              <Typography color={"white"} fontSize={14} fontWeight={500}>
+                {selectedTraderID?.open}
+              </Typography>
+            </Box>
+            <Box display={"flex"} alignItems={"center"} gap={1}>
+              <Typography color={"gray"} fontSize={14} fontWeight={500}>
+                Avg. Open Price
+              </Typography>
+              <Typography color={"white"} fontSize={14} fontWeight={500}>
+                {selectedTraderID?.close}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
     </>
   );
 };
