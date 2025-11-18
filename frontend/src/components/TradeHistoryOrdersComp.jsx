@@ -879,7 +879,8 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
             sx={{
               position: "absolute",
               inset: 0,
-              backgroundImage: `url(${backgroundImage})`,
+              // backgroundImage: `url(${backgroundImage})`,
+              backgroundColor: "#030516",
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -889,9 +890,9 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
 
           {/* Content */}
           <Box sx={{ position: "relative", zIndex: 2, p: 2 }}>
-            <img src={logo} alt="logo" width={150} height={40} />
+            <img src={logo} alt="logo" width={180} height={45} />
 
-            <Typography color={"white"} mt={8} fontSize={18}>
+            <Typography color={"white"} mt={8} fontSize={20}>
               Unrealized PnL
             </Typography>
 
@@ -903,11 +904,11 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
             >
               <Typography
                 color={"white"}
-                fontSize={18}
+                fontSize={20}
                 fontWeight={600}
                 sx={{ borderRight: "0.5px solid gray" }}
-                mr={1.5}
-                pr={1.5}
+                mr={3}
+                pr={3}
               >
                 {selectedTraderID?.symbols}
               </Typography>
@@ -915,15 +916,15 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
                 color={
                   selectedTraderID?.buyOrSell === "Long" ? "springgreen" : "red"
                 }
-                fontSize={18}
+                fontSize={20}
                 fontWeight={600}
                 sx={{ borderRight: "1px solid darkgray" }}
-                mr={1.5}
-                pr={1.5}
+                mr={3}
+                pr={3}
               >
                 {selectedTraderID?.buyOrSell}
               </Typography>
-              <Typography color={"white"} fontSize={18} fontWeight={600}>
+              <Typography color={"white"} fontSize={20} fontWeight={600}>
                 {selectedTraderID?.leverage}
               </Typography>
             </Box>
@@ -931,25 +932,25 @@ const TradeHistoryOrdersComp = ({ allTradeFiltered }) => {
             <Typography
               color={"springgreen"}
               mt={1}
-              fontSize={40}
+              fontSize={45}
               fontWeight={600}
             >
               {selectedTraderID?.roi}
             </Typography>
 
             <Box display={"flex"} alignItems={"center"} mt={1} gap={1}>
-              <Typography color={"gray"} fontSize={14} fontWeight={500}>
+              <Typography color={"gray"} fontSize={16} fontWeight={500}>
                 Last Price
               </Typography>
-              <Typography color={"white"} fontSize={14} fontWeight={500}>
+              <Typography color={"white"} fontSize={16} fontWeight={500}>
                 {selectedTraderID?.open}
               </Typography>
             </Box>
-            <Box display={"flex"} alignItems={"center"} gap={1}>
-              <Typography color={"gray"} fontSize={14} fontWeight={500}>
+            <Box display={"flex"} alignItems={"center"} gap={1} mt={1}>
+              <Typography color={"gray"} fontSize={16} fontWeight={500}>
                 Avg. Open Price
               </Typography>
-              <Typography color={"white"} fontSize={14} fontWeight={500}>
+              <Typography color={"white"} fontSize={16} fontWeight={500}>
                 {selectedTraderID?.close}
               </Typography>
             </Box>
